@@ -1,22 +1,48 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <style type='text/css'>
+      textarea.valid {
+        border: 1px solid green;
+      }
+      textarea.invalid {
+        border: 1px solid red;
+      }
+    </style>
     <script type='text/javascript' src="./jquery.js" ></script>
     <script type='text/javascript' src="./crustacean.js" ></script>
     <script type='text/javascript'>
       $(function () {
-var fv = Crustacean.createFormValidation($('form')), validationGroup;
 
-fv.createValidationGroup()
-  .find("textarea", function () {
+var fv = Crustacean.createForElement($('form'));
 
+fv
+  .validatesEach("textarea", function () {
+    return $(this).val().length > 0;
   })
+  .forEach(function (isValid, element) {
+    $(element)
+      .toggleClass("invalid", !isValid)
+      .toggleClass("valid", isValid);
+  })
+  .forAll(function (isValid) {
+    $("#result").text(isValid ? "all valid":"some are not valid");
+  });
 
+  $("textarea").change(function () {
+    console.log("!");
+    fv.execute(function (isValid) {
+      $("#result").css("color", isValid ? "green" : "red");
+    });
+  });
       });
     </script>
   </head>
   <body>
     <form>
+      <p id='result'></p>
+      <textarea></textarea>
+      <textarea></textarea>
       <textarea></textarea>
     </form>
   </body>
