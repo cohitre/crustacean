@@ -1,4 +1,4 @@
-(function () {
+(function (window, document, $) {
 
 var formValidation, validationgroup;
 
@@ -9,7 +9,7 @@ formValidation = {
       parent: this,
       selector: undefined,
       validationCallback: undefined,
-      afterValidateEach: [], 
+      afterValidateEach: [],
       afterValidateAll: []
     }, validationGroup, others);
   },
@@ -77,4 +77,4 @@ window.Crustacean = {
   },
 };
 
-})();
+})(window, document, jQuery);

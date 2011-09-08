@@ -30,7 +30,6 @@ fv
   });
 
   $("textarea").change(function () {
-    console.log("!");
     fv.execute(function (isValid) {
       $("#result").css("color", isValid ? "green" : "red");
     });
