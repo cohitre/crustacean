@@ -29,6 +29,7 @@ formValidation = {
       }
     });
     $.isFunction(callback) && callback.call(this, allValid);
+    return allValid;
   }
 };
 
